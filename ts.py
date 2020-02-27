@@ -44,6 +44,7 @@ def server(lookupt):
             print(from_client)
             """This is what where we look into our code and see what we can do"""
             conn.send(lookup(from_client.decode('utf-8'), lookupt).encode('utf-8'))
+        s.close()
 
 
 def lookup(message, table):
