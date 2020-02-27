@@ -15,24 +15,25 @@ def main():
         exit()
     server_binding = ('', sys.argv[1])
     s.bind(server_binding)
-    s.listen(1)
+    s.listen(5)
     host = socket.gethostname()
     print("[S]: Server host name is {}".format(host))
     localhost_ip = (socket.gethostbyname(host))
     print("[S]: Server IP address is {}".format(localhost_ip))
     while True:
-        csockid, addr = s.accppt()
+        c, addr = s.accppt()
         print("[S]: Got a connection request from a client at {}".format(addr))
         from_client = ''
         while True:
-            data = csockid.recv(8)
+            data = c.recv(200)
             if not data:
                 break
-            from_client += data
+            from_client += data.decode('utf-8')
             print(from_client)
-            csockid.send(lookup(from_client.decode('utf-8'), local_table))
-    s.close()
-    f.close()
+            c.send(lookup(from_client, local_table).encode('utf-8'))
+        s.close()
+        f.close()
+
 
 def lookup(msg, local_table):
     key = msg.split()[0]
@@ -41,4 +42,5 @@ def lookup(msg, local_table):
     else:
         msg = (key + " - NS")
     return msg
+
 
