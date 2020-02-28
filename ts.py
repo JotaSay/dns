@@ -52,5 +52,5 @@ def lookup(message, table):
     if key in table:
         message = str(key+' '+message[key][1]+' '+message[key[2]])
     else:
-        message = (key+' '+" - Error:HOST NOT FOUND")
+        message = (key+" - Error:HOST NOT FOUND")
     return message
