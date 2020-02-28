@@ -6,11 +6,11 @@ import sys
 def main():
     """This part just create the data structure that I'm going to use for our lookups"""
     lookupt = {}
-    File = open(r"PROJ1-DNSTS.txt", "Access_Mode")
+    File = open(r"PROJI-DNSTS.txt", "Access_Mode")
     lines = File.readlines()
     for line in lines:
         key = line.split()
-        lookup[key[0]] = key
+        lookupt[key[0]] = key
     server(lookupt)
     File.close()
 
@@ -50,7 +50,7 @@ def server(lookupt):
 def lookup(message, table):
     key = message.split()[0]
     if key in table:
-        message = str(key+''+message[key][1]+''+message[key[2]])
+        message = str(key+' '+message[key][1]+' '+message[key[2]])
     else:
-        message = (key+''+"- Error:HOST NOT FOUND")
+        message = (key+' '+" - Error:HOST NOT FOUND")
     return message
