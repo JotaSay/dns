@@ -8,7 +8,7 @@ def main():
         exit()
     print("Welcome to our DNS look up project")
     """This is where we read all the lines and perform each lookup accordingly"""
-    File = open(r"PROJ1-HNS.txt", "Access_Mode")
+    File = open(r"PROJI-HNS.txt", "Access_Mode")
     lines = File.readlines()
     client(lines)
     File.close()
@@ -52,7 +52,7 @@ def client(lines):
                 csts.connect(server_bindingts)
                 created = True
             """send the same query to ts server now"""
-            csts.sendall(query)
+            csts.sendall(query.encode('utf-8'))
             tsdata = csts.recv(100)
             print("[C]: Data received from server: {}".format(tsdata.decode('utf-8')))
             readable2 = tsdata.decode('utf-8').split()
