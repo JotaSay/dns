@@ -45,7 +45,7 @@ def server(lookupt):
                 conn.send(lookup(from_client.decode('utf-8'), lookupt))
                 from_client=''
     except KeyboardInterrupt:
-        s.close();
+        s.close()
         return
 
 
